@@ -1,0 +1,17 @@
+{% extends "base.html" %}{% block title %}FitBuddy – Your AI Fitness Plan{% endblock %}
+{% block content %}
+<section class="hero"><div><p class="eyebrow">AI FITNESS PLANNER</p><h1>Build a fitness routine that fits <em>you.</em></h1><p class="lead">Tell FitBuddy your goal and preferred intensity. Gemini creates a practical 7-day plan plus a nutrition or recovery tip.</p></div></section>
+<section class="card form-card">
+  <h2>Create your plan</h2>
+  <form method="post" action="/generate-workout" class="grid-form">
+    <label>Name<input name="name" required minlength="2" maxlength="100" placeholder="Your name"></label>
+    <label>User ID<input name="user_id" required pattern="[A-Za-z0-9_-]+" maxlength="80" placeholder="e.g. fit001"></label>
+    <label>Age<input name="age" type="number" min="13" max="100" required></label>
+    <label>Weight (kg)<input name="weight" type="number" min="20" max="400" step="0.1" required></label>
+    <label>Fitness goal<select name="goal" required>{% for goal in goals %}<option value="{{ goal }}">{{ goal|title }}</option>{% endfor %}</select></label>
+    <label>Workout intensity<select name="intensity" required>{% for intensity in intensities %}<option value="{{ intensity }}">{{ intensity|title }}</option>{% endfor %}</select></label>
+    <button class="primary full" type="submit">Generate My 7-Day Plan →</button>
+  </form>
+</section>
+<div class="feature-row"><div><b>7 days</b><span>Structured sessions</span></div><div><b>AI powered</b><span>Personalized guidance</span></div><div><b>Feedback loop</b><span>Refine your plan</span></div></div>
+{% endblock %}

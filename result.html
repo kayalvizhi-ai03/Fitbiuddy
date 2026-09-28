@@ -1,0 +1,7 @@
+{% extends "base.html" %}{% block title %}Your FitBuddy Plan{% endblock %}
+{% block content %}
+{% if message %}<div class="success">✓ {{ message }}</div>{% endif %}
+<section class="card profile"><div><p class="eyebrow">YOUR PROFILE</p><h1>{{ user.name }}'s plan</h1><p>{{ user.goal|title }} · {{ user.intensity|title }} intensity · {{ user.age }} years · {{ user.weight }} kg</p></div><a class="button" href="/">New plan</a></section>
+<section class="plan-grid"><div class="card"><div class="section-title"><h2>7-Day Workout Plan</h2><span>Gemini AI</span></div><pre class="plan">{{ workout_plan }}</pre></div><aside class="card tip"><p class="eyebrow">NUTRITION / RECOVERY</p><h2>One useful habit</h2><p>{{ nutrition_tip }}</p></aside></section>
+<section class="card"><p class="eyebrow">REFINE YOUR PLAN</p><h2>What should change?</h2><p class="muted">Try: “more focus on cardio”, “include more rest days”, or “make sessions shorter”.</p><form method="post" action="/submit-feedback"><input type="hidden" name="user_id" value="{{ user.user_id }}"><textarea name="feedback" maxlength="1200" minlength="3" required placeholder="Tell FitBuddy what you want to change..."></textarea><button class="primary" type="submit">Update Plan with AI →</button></form></section>
+{% endblock %}
